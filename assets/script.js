@@ -1,3 +1,4 @@
+// Ici le tableau ou sont réunis les information concernant les slides du carrousel
 const slides = [
 	{
 		"image":"slide1.jpg",
@@ -16,3 +17,5 @@ const slides = [
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
 	}
 ]
+
+// SCRIPT pour créer le carrousel
