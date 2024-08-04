@@ -19,3 +19,76 @@ const slides = [
 ]
 
 // SCRIPT pour créer le carrousel
+
+// Variables qui seront global
+let index = 0
+const arrow_left = document.getElementById("arrow_left")
+const arrow_right = document.getElementById("arrow_right")
+const containerDots = document.querySelector(".dots")
+let slideImage = document.querySelector(".banner-img")
+let slideParagraphe = document.querySelector("#banner p")
+
+// Fonction pour changer le slider et le bullet point au clic sur la flèche
+// Gauche
+function clickArrowLeft() {
+	arrow_left.addEventListener("click", () => {
+
+		// On verifie que sa fonctionne
+		console.log("Vous avez cliqué sur la flèche gauche")
+		
+		// On retire la class CSS des bullet plein
+		const arrayDots = document.querySelectorAll(".dots .dot")
+		arrayDots[index].classList.remove("dot-selected")
+
+		// on réduit l'index
+		index--
+		console.log(index)
+
+		// Changement de l'image et du texte du slider
+		slideImage.src = `./assets/images/slideshow/${slides[index].image}`
+		slideParagraphe.innerHTML = slides[index].tagLine
+		arrayDots[index].classList.add("dot-selected")
+})
+}
+clickArrowLeft();
+
+
+// Fonction pour changer le slider et le bullet point au clic sur la flèche
+// Droite
+function clickArrowRight() {
+	arrow_right.addEventListener("click", () => {
+
+		// on verifie que sa fonctionne
+		console.log("Vous avez cliqué sur la flèche droite")
+
+		// On retire la class CSS des bullet plein
+		const arrayDots = document.querySelectorAll(".dots .dot")
+		arrayDots[index].classList.remove("dot-selected")
+
+		// on augmente l'index
+		index++
+		console.log(index)
+
+		// Changement de l'image et du texte du slider
+		slideImage.src = `./assets/images/slideshow/${slides[index].image}`
+		slideParagraphe.innerHTML = slides[index].tagLine
+		arrayDots[index].classList.add("dot-selected")
+})
+}
+clickArrowRight();
+
+// Désormais nous allons créer les bullet point, on en affichera autant que de slide
+// On crée une balise <span> pour chaque Slide
+for (let i = 0; i < slides.length; i++) {
+	let dot = document.createElement("span")
+	// et on assigne la class "dot" a ses nouveaux élements
+	dot.classList.add("dot")
+	// pour les insérer dans la <div class="dots">
+	containerDots.appendChild(dot)
+	if (i === index) {
+		dot.classList.add("dot_selected")
+	}
+}
+
+
+
