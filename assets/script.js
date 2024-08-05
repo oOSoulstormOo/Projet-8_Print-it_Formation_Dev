@@ -22,9 +22,15 @@ const slides = [
 
 // Variables qui seront global
 let index = 0
+
+// Variable des flèches
 const arrow_left = document.getElementById("arrow_left")
 const arrow_right = document.getElementById("arrow_right")
+
+// Variable des bullet point
 const containerDots = document.querySelector(".dots")
+
+// Variable des images et du texte à changer dans le slide
 let slideImage = document.querySelector(".banner-img")
 let slideParagraphe = document.querySelector("#banner p")
 
@@ -38,16 +44,20 @@ function clickArrowLeft() {
 		
 		// On retire la class CSS des bullet plein
 		const arrayDots = document.querySelectorAll(".dots .dot")
-		arrayDots[index].classList.remove("dot-selected")
+		arrayDots[index].classList.remove("dot_selected")
 
-		// on réduit l'index
+		// On décremente la variable
+		// Et Si l'index devient inférieur a 0 alors l'index vaut la dernière image
 		index--
-		console.log(index)
 
+		if ( index < 0) {
+			index = slides.length - 1
+			}
+			
 		// Changement de l'image et du texte du slider
 		slideImage.src = `./assets/images/slideshow/${slides[index].image}`
 		slideParagraphe.innerHTML = slides[index].tagLine
-		arrayDots[index].classList.add("dot-selected")
+		arrayDots[index].classList.add("dot_selected")
 })
 }
 clickArrowLeft();
@@ -63,32 +73,40 @@ function clickArrowRight() {
 
 		// On retire la class CSS des bullet plein
 		const arrayDots = document.querySelectorAll(".dots .dot")
-		arrayDots[index].classList.remove("dot-selected")
+		arrayDots[index].classList.remove("dot_selected")
 
-		// on augmente l'index
+		// On incrémente la variable
+		// Et Si l'index devient supérieur à la liste des images alors l'index vaut 0 (donc la première image)
 		index++
-		console.log(index)
+
+		if ( index > slides.length - 1) {
+			index = 0
+			}
 
 		// Changement de l'image et du texte du slider
 		slideImage.src = `./assets/images/slideshow/${slides[index].image}`
 		slideParagraphe.innerHTML = slides[index].tagLine
-		arrayDots[index].classList.add("dot-selected")
+		arrayDots[index].classList.add("dot_selected")
 })
 }
 clickArrowRight();
 
-// Désormais nous allons créer les bullet point, on en affichera autant que de slide
-// On crée une balise <span> pour chaque Slide
-for (let i = 0; i < slides.length; i++) {
-	let dot = document.createElement("span")
-	// et on assigne la class "dot" a ses nouveaux élements
-	dot.classList.add("dot")
-	// pour les insérer dans la <div class="dots">
-	containerDots.appendChild(dot)
-	if (i === index) {
-		dot.classList.add("dot_selected")
+// Fonction pour créer les bullet point
+function displayDots() {
+	// On crée une balise <span> pour chaque Slide
+	for (let i = 0; i < slides.length; i++) {
+		let dot = document.createElement("span")
+		// et on assigne la class "dot" a ses nouveaux élements
+		dot.classList.add("dot")
+		// pour les insérer dans la <div class="dots">
+		containerDots.appendChild(dot)
+		if (i === index) {
+			dot.classList.add("dot_selected")
+		}
 	}
 }
+displayDots();
+
 
 
 
