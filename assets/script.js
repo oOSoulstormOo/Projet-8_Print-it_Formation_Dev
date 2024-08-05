@@ -91,6 +91,7 @@ function clickArrowRight() {
 }
 clickArrowRight();
 
+
 // Fonction pour créer les bullet point
 function displayDots() {
 	// On crée une balise <span> pour chaque Slide
