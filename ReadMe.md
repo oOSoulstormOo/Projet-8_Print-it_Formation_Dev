@@ -1,1 +1,3 @@
-# Print-It WebSite v.1
+# Présentation du projet n°8 de la formation de développeur Wordpress d'Openclassrooms.
+
+
